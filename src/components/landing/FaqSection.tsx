@@ -34,46 +34,46 @@ export function FaqSection() {
   };
 
   return (
-    <section className="py-20 bg-[#fafafa] relative overflow-hidden">
+    <section className="py-20 bg-slate-50/70 relative overflow-hidden">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider mb-3 border border-slate-200">
-            <HelpCircle className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-3 border border-indigo-200/80 shadow-xs">
+            <HelpCircle className="w-3.5 h-3.5 text-indigo-600" />
             <span>FAQ</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
             Frequently Asked Questions
           </h2>
           <p className="text-sm text-slate-600">
-            Everything you need to know about SpeakRight and Google Gemini AI.
+            Everything you need to know about SpeakRight communication coaching.
           </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3.5">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden transition-all"
+                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all hover:border-indigo-200"
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50/60 transition-colors"
+                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-indigo-50/30 transition-colors"
                 >
-                  <span className="text-sm sm:text-base font-semibold text-slate-900">
+                  <span className="text-sm sm:text-base font-bold text-slate-900">
                     {faq.q}
                   </span>
                   <ChevronDown
                     className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180" : ""
+                      isOpen ? "rotate-180 text-indigo-600" : ""
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 animate-fadeIn">
+                  <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 font-normal">
                     {faq.a}
                   </div>
                 )}

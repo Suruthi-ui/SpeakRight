@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { RecipientType, ToneType } from "@/types/communication";
 import { RECIPIENT_OPTIONS, SITUATION_OPTIONS, TONE_OPTIONS } from "@/lib/sampleData";
-import { SlidersHorizontal, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
+import { SlidersHorizontal, ChevronDown, ChevronUp, RotateCw } from "lucide-react";
 
 interface Props {
   initialMessage: string;
@@ -26,7 +26,7 @@ export function QuickTuneBar({
   initialTone,
   onReAnalyze,
   isLoading,
-}: Props) {
+  }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState(initialMessage);
   const [recipient, setRecipient] = useState(initialRecipient);
@@ -46,20 +46,20 @@ export function QuickTuneBar({
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+    <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-indigo-500/5 overflow-hidden transition-all">
       <div className="p-4 sm:p-5 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white flex items-center justify-center shadow-md shadow-indigo-500/25">
             <SlidersHorizontal className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold text-slate-900">Current Context</span>
-              <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-medium border border-slate-200">
+              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 shadow-2xs">
                 {recipient} • {situation}
               </span>
             </div>
-            <p className="text-xs text-slate-500 truncate max-w-md hidden sm:block">
+            <p className="text-xs text-slate-500 truncate max-w-md hidden sm:block font-normal">
               &ldquo;{message.length > 70 ? message.substring(0, 67) + "..." : message}&rdquo;
             </p>
           </div>
@@ -69,7 +69,7 @@ export function QuickTuneBar({
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 hover:border-indigo-200 text-xs font-bold text-slate-800 flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
           >
             <span>{isOpen ? "Close Editor" : "Edit & Re-Analyze"}</span>
             {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -78,16 +78,16 @@ export function QuickTuneBar({
       </div>
 
       {isOpen && (
-        <form onSubmit={handleSubmit} className="p-5 border-t border-slate-100 bg-slate-50/50 space-y-4">
+        <form onSubmit={handleSubmit} className="p-5 border-t border-slate-100 bg-slate-50/60 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-[11px] font-semibold text-slate-700 uppercase mb-1">
+              <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
                 Recipient
               </label>
               <select
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
-                className="minimal-input w-full px-3 py-2 rounded-xl text-xs bg-white focus:outline-none"
+                className="minimal-input w-full px-3 py-2 rounded-xl text-xs bg-white focus:outline-none font-medium"
               >
                 {RECIPIENT_OPTIONS.map((r) => (
                   <option key={r} value={r}>
@@ -98,13 +98,13 @@ export function QuickTuneBar({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-slate-700 uppercase mb-1">
+              <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
                 Situation
               </label>
               <select
                 value={situation}
                 onChange={(e) => setSituation(e.target.value)}
-                className="minimal-input w-full px-3 py-2 rounded-xl text-xs bg-white focus:outline-none"
+                className="minimal-input w-full px-3 py-2 rounded-xl text-xs bg-white focus:outline-none font-medium"
               >
                 {SITUATION_OPTIONS.map((s) => (
                   <option key={s} value={s}>
@@ -115,13 +115,13 @@ export function QuickTuneBar({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-slate-700 uppercase mb-1">
+              <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
                 Desired Tone
               </label>
               <select
                 value={tone}
                 onChange={(e) => setTone(e.target.value as ToneType)}
-                className="minimal-input w-full px-3 py-2 rounded-xl text-xs bg-white focus:outline-none"
+                className="minimal-input w-full px-3 py-2 rounded-xl text-xs bg-white focus:outline-none font-medium"
               >
                 {TONE_OPTIONS.map((t) => (
                   <option key={t} value={t}>
@@ -133,14 +133,14 @@ export function QuickTuneBar({
           </div>
 
           <div>
-            <label className="block text-[11px] font-semibold text-slate-700 uppercase mb-1">
+            <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
               Draft Message
             </label>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={3}
-              className="minimal-input w-full p-3 rounded-xl text-xs text-slate-900 focus:outline-none leading-relaxed bg-white"
+              className="minimal-input w-full p-3 rounded-xl text-xs text-slate-900 focus:outline-none leading-relaxed bg-white font-medium"
             />
           </div>
 
@@ -148,17 +148,17 @@ export function QuickTuneBar({
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="px-3.5 py-1.5 rounded-xl text-xs text-slate-600 hover:text-slate-900 cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="minimal-button-primary px-4 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              className="minimal-button-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{isLoading ? "Analyzing..." : "Re-Run Gemini Analysis"}</span>
+              <RotateCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
+              <span>{isLoading ? "Analyzing..." : "Re-Run AI Analysis"}</span>
             </button>
           </div>
         </form>

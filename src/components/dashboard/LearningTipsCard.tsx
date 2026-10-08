@@ -12,63 +12,66 @@ export function LearningTipsCard({ tips }: Props) {
   if (!tips || tips.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm relative overflow-hidden">
+    <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xl shadow-indigo-500/5 relative overflow-hidden">
       <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white flex items-center justify-center shadow-md shadow-amber-500/25">
             <Lightbulb className="w-4 h-4" />
           </div>
-          <h3 className="text-base font-bold text-slate-900">Actionable Coaching Tips</h3>
+          <div>
+            <h3 className="text-base font-bold text-slate-900">Actionable Coaching Tips</h3>
+            <p className="text-[11px] text-slate-500">Long-term communication leverage</p>
+          </div>
         </div>
-        <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-          Permanent Habits
+        <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 shadow-2xs">
+          Communication Habits
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {tips.map((item, idx) => (
           <div
             key={idx}
-            className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-3"
+            className="p-5 rounded-2xl bg-gradient-to-br from-slate-50 via-white to-amber-50/20 border border-slate-200 hover:border-amber-300 transition-all flex flex-col justify-between space-y-3 shadow-xs"
           >
             <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="w-5 h-5 rounded-full bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center">
+              <div className="flex items-center gap-2.5 mb-2">
+                <span className="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-extrabold text-xs flex items-center justify-center shadow-2xs">
                   {idx + 1}
                 </span>
                 <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed mb-3">
+              <p className="text-xs text-slate-600 leading-relaxed mb-3 font-normal">
                 {item.tip}
               </p>
 
               {/* Rule of thumb */}
-              <div className="p-3 rounded-xl bg-white border border-slate-200 mb-3 shadow-xs">
-                <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-slate-500 mb-0.5">
-                  <Bookmark className="w-3 h-3 text-slate-700" />
+              <div className="p-3.5 rounded-xl bg-white border border-amber-200/80 mb-3 shadow-2xs">
+                <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-amber-700 mb-1">
+                  <Bookmark className="w-3.5 h-3.5 text-amber-600" />
                   <span>Rule of Thumb:</span>
                 </div>
-                <p className="text-xs text-slate-900 font-medium italic">
+                <p className="text-xs text-slate-900 font-semibold italic">
                   &ldquo;{item.ruleOfThumb}&rdquo;
                 </p>
               </div>
             </div>
 
             {/* Avoid vs Try */}
-            <div className="space-y-2 pt-2 border-t border-slate-200 text-[11px]">
+            <div className="space-y-2.5 pt-2 border-t border-slate-200/80 text-[11px]">
               {item.avoidPhrases && item.avoidPhrases.length > 0 && (
                 <div>
-                  <span className="text-slate-500 block text-[10px] uppercase font-semibold mb-1">
-                    Avoid:
+                  <span className="text-rose-700 block text-[10px] uppercase font-bold mb-1.5 flex items-center gap-1">
+                    <X className="w-3 h-3" />
+                    <span>Avoid:</span>
                   </span>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-1.5">
                     {item.avoidPhrases.map((phrase, pIdx) => (
                       <span
                         key={pIdx}
-                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 line-through text-[11px]"
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 text-rose-800 border border-rose-200 line-through text-[11px] font-medium shadow-2xs"
                       >
-                        <X className="w-2.5 h-2.5" />
                         <span>{phrase}</span>
                       </span>
                     ))}
@@ -77,17 +80,17 @@ export function LearningTipsCard({ tips }: Props) {
               )}
 
               {item.tryPhrases && item.tryPhrases.length > 0 && (
-                <div className="mt-1.5">
-                  <span className="text-slate-500 block text-[10px] uppercase font-semibold mb-1">
-                    Use instead:
+                <div className="mt-2">
+                  <span className="text-emerald-700 block text-[10px] uppercase font-bold mb-1.5 flex items-center gap-1">
+                    <Check className="w-3 h-3" />
+                    <span>Use instead:</span>
                   </span>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-1.5">
                     {item.tryPhrases.map((phrase, pIdx) => (
                       <span
                         key={pIdx}
-                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-[11px]"
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px] shadow-2xs"
                       >
-                        <Check className="w-2.5 h-2.5" />
                         <span>{phrase}</span>
                       </span>
                     ))}

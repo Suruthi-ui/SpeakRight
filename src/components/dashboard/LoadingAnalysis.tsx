@@ -28,12 +28,12 @@ export function LoadingAnalysis({ recipient, situation }: LoadingAnalysisProps) 
   }, []);
 
   return (
-    <div className="min-h-[55vh] flex flex-col items-center justify-center p-6 text-center">
+    <div className="min-h-[50vh] flex flex-col items-center justify-center p-6 text-center">
       <div className="relative mb-6">
-        <div className="w-20 h-20 rounded-2xl bg-slate-900 p-0.5 shadow-md flex items-center justify-center text-white">
-          <Brain className="w-8 h-8 text-white animate-pulse" />
+        <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-600 to-violet-600 p-0.5 shadow-xl shadow-indigo-500/30 flex items-center justify-center text-white">
+          <Brain className="w-9 h-9 text-white animate-pulse" />
         </div>
-        <div className="absolute -bottom-1 -right-1 p-1.5 rounded-lg bg-emerald-600 text-white shadow-sm">
+        <div className="absolute -bottom-1 -right-1 p-1.5 rounded-lg bg-emerald-500 text-white shadow-md shadow-emerald-500/30">
           <Sparkles className="w-3.5 h-3.5 animate-spin" />
         </div>
       </div>
@@ -43,40 +43,42 @@ export function LoadingAnalysis({ recipient, situation }: LoadingAnalysisProps) 
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="max-w-md mx-auto space-y-2"
+        className="max-w-md mx-auto space-y-2.5"
       >
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 border border-indigo-200 text-indigo-700 text-xs font-bold shadow-xs">
           <span>AI Coach at Work</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
         </div>
 
         <h3 className="text-xl font-bold text-slate-900 tracking-tight">
           Calibrating for {recipient}
         </h3>
-        <p className="text-xs text-slate-500 font-mono">
+        <p className="text-xs text-indigo-600 font-mono font-semibold">
           Context: {situation}
         </p>
 
-        <p className="text-sm text-slate-700 font-medium h-5">
+        <p className="text-sm text-slate-700 font-semibold h-5">
           {STAGES[currentStageIdx]}
         </p>
       </motion.div>
 
       {/* Progress tracker steps */}
-      <div className="mt-6 flex items-center justify-center gap-1.5 max-w-xs w-full">
+      <div className="mt-7 flex items-center justify-center gap-1.5 max-w-xs w-full">
         {STAGES.map((_, i) => (
           <div
             key={i}
-            className={`h-1 rounded-full transition-all duration-400 flex-1 ${
-              i <= currentStageIdx ? "bg-slate-900" : "bg-slate-200"
+            className={`h-1.5 rounded-full transition-all duration-400 flex-1 ${
+              i <= currentStageIdx
+                ? "bg-gradient-to-r from-indigo-600 to-violet-600 shadow-xs"
+                : "bg-slate-200"
             }`}
           />
         ))}
       </div>
 
-      <div className="mt-5 flex items-center gap-1.5 text-xs text-slate-500">
+      <div className="mt-6 flex items-center gap-1.5 text-xs text-slate-500 font-medium">
         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-        <span>SpeakRight AI Communication Engine</span>
+        <span>SpeakRight Native Communication Engine</span>
       </div>
     </div>
   );

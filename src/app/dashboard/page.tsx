@@ -125,16 +125,22 @@ function DashboardContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-slate-900 flex flex-col justify-between selection:bg-slate-200">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50/40 via-slate-50/50 to-white text-slate-900 flex flex-col justify-between selection:bg-indigo-100 selection:text-indigo-900 relative">
+      {/* Ambient background glows */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute -top-32 right-1/4 w-[500px] h-[500px] bg-indigo-400/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-violet-400/10 rounded-full blur-[100px]" />
+      </div>
+
       <Navbar />
 
-      <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+      <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full relative z-10">
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="p-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition-colors shadow-xs"
+              className="p-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition-all shadow-xs hover:shadow-sm"
               title="Return to Landing Page"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -142,15 +148,16 @@ function DashboardContent() {
 
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+                <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
                   AI Communication Dashboard
                 </h1>
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Native Coach Active
                 </span>
               </div>
-              <p className="text-xs text-slate-500">
-                Calibrated for {currentDraft.recipient}
+              <p className="text-xs text-slate-500 font-medium">
+                Calibrated for {currentDraft.recipient} • {currentDraft.situation}
               </p>
             </div>
           </div>
@@ -159,7 +166,7 @@ function DashboardContent() {
             <button
               type="button"
               onClick={() => performAnalysis(currentDraft)}
-              className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700 flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+              className="px-3.5 py-2 rounded-xl bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 hover:border-indigo-200 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-95"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Re-run Analysis</span>
@@ -167,7 +174,7 @@ function DashboardContent() {
 
             <Link
               href="/#message-builder"
-              className="minimal-button-primary px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-xs"
+              className="minimal-button-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md shadow-indigo-500/20 active:scale-95"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>New Draft</span>
@@ -177,7 +184,7 @@ function DashboardContent() {
 
         {/* Loading State */}
         {isLoading && (
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl shadow-indigo-500/5">
             <LoadingAnalysis
               recipient={currentDraft.recipient}
               situation={currentDraft.situation}
@@ -193,13 +200,13 @@ function DashboardContent() {
             </div>
 
             <h3 className="text-lg font-bold text-slate-900">Analysis Error</h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{errorMessage}</p>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">{errorMessage}</p>
 
             <div className="pt-2 flex items-center justify-center gap-2.5">
               <button
                 type="button"
                 onClick={() => performAnalysis(currentDraft)}
-                className="minimal-button-primary px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+                className="minimal-button-primary px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Retry Analysis</span>
@@ -210,7 +217,7 @@ function DashboardContent() {
 
         {/* Active Analysis Results Display */}
         {!isLoading && !errorMessage && analysis && (
-          <div className="space-y-6 animate-fadeIn">
+          <div className="space-y-6">
             {/* Quick Context & Re-Tune Bar */}
             <QuickTuneBar
               initialMessage={currentDraft.message}
@@ -221,45 +228,37 @@ function DashboardContent() {
               isLoading={isLoading}
             />
 
-            {/* Top Row: Score Card & Tone Radar */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              <div className="lg:col-span-6 flex">
-                <div className="w-full">
-                  <CommunicationScoreCard analysis={analysis} />
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 flex">
-                <div className="w-full">
-                  <ToneRadar tones={analysis.tones} />
-                </div>
-              </div>
+            {/* Row 1: Overall Communication Score & 5-Dimension Tone Radar */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <CommunicationScoreCard analysis={analysis} />
+              <ToneRadar tones={analysis.tones} />
             </div>
 
-            {/* Before vs Improved Message */}
-            <BeforeAfterComparison analysis={analysis} />
+            {/* Row 2: Before vs. Improved Message Comparison */}
+            <BeforeAfterComparison
+              analysis={analysis}
+              onCopySuccess={() => {}}
+            />
 
-            {/* Action Bar (Copy, PDF Download, Share, WhatsApp Simulator) */}
+            {/* Row 3: Three Alternative Rewrites */}
+            <AlternativeRewrites rewrites={analysis.alternativeRewrites} />
+
+            {/* Row 4: Action & Export Bar */}
             <ExportShareBar
               analysis={analysis}
               onOpenWhatsAppSimulator={() => setIsWhatsAppModalOpen(true)}
             />
 
-            {/* Linguistic Explanation */}
-            <AiExplanationCard analysis={analysis} />
-
-            {/* Actionable Learning Tips */}
-            <LearningTipsCard tips={analysis.learningTips} />
-
-            {/* Three Alternative Rewrites */}
-            <AlternativeRewrites rewrites={analysis.alternativeRewrites} />
+            {/* Row 5: AI Explanation & Learning Tips */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <AiExplanationCard analysis={analysis} />
+              <LearningTipsCard tips={analysis.learningTips} />
+            </div>
           </div>
         )}
       </main>
 
-      <Footer />
-
-      {/* WhatsApp Simulator Modal */}
+      {/* WhatsApp Pre-Send Simulator Modal */}
       {analysis && (
         <WhatsAppSimulatorModal
           isOpen={isWhatsAppModalOpen}
@@ -267,6 +266,8 @@ function DashboardContent() {
           analysis={analysis}
         />
       )}
+
+      <Footer />
     </div>
   );
 }
@@ -275,10 +276,10 @@ export default function DashboardPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#fafafa] flex items-center justify-center text-slate-900">
-          <div className="flex items-center gap-2.5">
-            <div className="w-4 h-4 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
-            <span className="text-xs font-medium text-slate-600">Loading SpeakRight Dashboard...</span>
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+          <div className="text-center space-y-3">
+            <div className="w-10 h-10 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-xs font-bold text-slate-600">Loading SpeakRight Dashboard...</p>
           </div>
         </div>
       }
