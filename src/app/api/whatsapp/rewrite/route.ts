@@ -13,12 +13,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const customApiKey =
-      req.headers.get("x-gemini-api-key") ||
-      (req.headers.get("authorization")?.replace("Bearer ", "")) ||
-      undefined;
-
-    const result = await processWhatsAppPreSendMessage(body, customApiKey);
+    const result = await processWhatsAppPreSendMessage(body);
 
     return NextResponse.json({
       success: true,

@@ -15,12 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SpeakRight – AI Communication Coach | Executive & Respectful Rewrites",
   description:
-    "Transform hesitant, blunt, or over-apologetic drafts into articulate, confident, and respectful communication in seconds with Google Gemini AI. Built for students, managers, and professionals.",
+    "Transform hesitant, blunt, or over-apologetic drafts into articulate, confident, and respectful communication in seconds. Built for students, managers, and professionals.",
   keywords: [
     "AI Communication Coach",
     "Email Rewriter",
     "Professional Communication",
-    "Google Gemini AI",
     "Student Email to Professor",
     "Salary Negotiation Email",
     "Executive Presence",
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SpeakRight – AI Communication Coach",
     description:
-      "Say what you mean, command the respect you deserve. Real-time tone calibration and multi-style rewrites powered by Google Gemini AI.",
+      "Say what you mean, command the respect you deserve. Real-time tone calibration and multi-style rewrites.",
     siteName: "SpeakRight",
     type: "website",
   },
@@ -45,9 +44,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#090b10] text-slate-100 selection:bg-indigo-500/30 selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#fafafa] text-slate-900 selection:bg-slate-200 selection:text-slate-900">
         {children}
       </body>
     </html>

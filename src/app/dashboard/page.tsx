@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CommunicationAnalysis } from "@/types/communication";
 import { SAMPLE_SCENARIOS } from "@/lib/sampleData";
+import { analyzeCommunicationNative } from "@/lib/analyzer";
 import { LoadingAnalysis } from "@/components/dashboard/LoadingAnalysis";
 import { CommunicationScoreCard } from "@/components/dashboard/CommunicationScoreCard";
 import { ToneRadar } from "@/components/dashboard/ToneRadar";
@@ -15,15 +16,14 @@ import { AlternativeRewrites } from "@/components/dashboard/AlternativeRewrites"
 import { QuickTuneBar } from "@/components/dashboard/QuickTuneBar";
 import { ExportShareBar } from "@/components/dashboard/ExportShareBar";
 import { WhatsAppSimulatorModal } from "@/components/dashboard/WhatsAppSimulatorModal";
-import { ApiKeyModal } from "@/components/ApiKeyModal";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
   ArrowLeft,
   AlertCircle,
-  Key,
   RotateCcw,
   SlidersHorizontal,
+  Sparkles,
 } from "lucide-react";
 
 function DashboardContent() {
@@ -42,7 +42,6 @@ function DashboardContent() {
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
   const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
 
   // Active message draft state initialized lazily
@@ -72,21 +71,9 @@ function DashboardContent() {
       setErrorMessage(null);
 
       try {
-        const storedKey =
-          typeof window !== "undefined"
-            ? localStorage.getItem("speakright_gemini_key") || ""
-            : "";
-
-        const headers: Record<string, string> = {
-          "Content-Type": "application/json",
-        };
-        if (storedKey) {
-          headers["x-gemini-api-key"] = storedKey;
-        }
-
         const res = await fetch("/api/analyze", {
           method: "POST",
-          headers,
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(params),
         });
 
@@ -94,18 +81,18 @@ function DashboardContent() {
 
         if (res.ok && data.success && data.data) {
           setAnalysis(data.data);
-          // Store in sessionStorage as latest analysis cache
           if (typeof window !== "undefined") {
             sessionStorage.setItem("speakright_latest_analysis", JSON.stringify(data.data));
           }
         } else {
-          setErrorMessage(
-            data.error || "Failed to analyze message. Please verify your Gemini API key."
-          );
+          // Native fallback
+          const nativeResult = analyzeCommunicationNative(params);
+          setAnalysis(nativeResult);
         }
-      } catch (err: unknown) {
-        const error = err as Error;
-        setErrorMessage(error.message || "Network error communicating with SpeakRight AI Engine.");
+      } catch {
+        // Safe offline native fallback
+        const nativeResult = analyzeCommunicationNative(params);
+        setAnalysis(nativeResult);
       } finally {
         setIsLoading(false);
       }
@@ -138,16 +125,16 @@ function DashboardContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090b10] text-slate-100 flex flex-col justify-between selection:bg-indigo-500/30">
+    <div className="min-h-screen bg-[#fafafa] text-slate-900 flex flex-col justify-between selection:bg-slate-200">
       <Navbar />
 
-      <main className="flex-grow pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        {/* Navigation Breadcrumb / Top Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+        {/* Top Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
+              className="p-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition-colors shadow-xs"
               title="Return to Landing Page"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -155,15 +142,15 @@ function DashboardContent() {
 
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
                   AI Communication Dashboard
                 </h1>
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/25">
-                  Live Engine
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  Native Coach Active
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
-                Personalized linguistic coaching calibrated for {currentDraft.recipient}
+              <p className="text-xs text-slate-500">
+                Calibrated for {currentDraft.recipient}
               </p>
             </div>
           </div>
@@ -171,16 +158,16 @@ function DashboardContent() {
           <div className="flex items-center gap-2.5">
             <button
               type="button"
-              onClick={() => setIsKeyModalOpen(true)}
-              className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-slate-300 flex items-center gap-1.5 transition-all cursor-pointer"
+              onClick={() => performAnalysis(currentDraft)}
+              className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700 flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
             >
-              <Key className="w-3.5 h-3.5 text-indigo-400" />
-              <span>API Key Settings</span>
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Re-run Analysis</span>
             </button>
 
             <Link
               href="/#message-builder"
-              className="px-3.5 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-xs font-semibold text-indigo-300 flex items-center gap-1.5 transition-all"
+              className="minimal-button-primary px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-xs"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>New Draft</span>
@@ -190,7 +177,7 @@ function DashboardContent() {
 
         {/* Loading State */}
         {isLoading && (
-          <div className="glass-panel-elevated rounded-[32px] p-8 sm:p-12 border border-white/10 shadow-2xl">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm">
             <LoadingAnalysis
               recipient={currentDraft.recipient}
               situation={currentDraft.situation}
@@ -200,31 +187,22 @@ function DashboardContent() {
 
         {/* Error State */}
         {!isLoading && errorMessage && (
-          <div className="glass-panel-elevated rounded-[28px] p-8 border border-red-500/30 text-center max-w-2xl mx-auto space-y-4 my-8">
-            <div className="w-14 h-14 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center mx-auto border border-red-500/30">
-              <AlertCircle className="w-7 h-7" />
+          <div className="bg-white rounded-3xl p-8 border border-rose-200 text-center max-w-xl mx-auto space-y-4 my-8 shadow-sm">
+            <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center mx-auto border border-rose-200">
+              <AlertCircle className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-bold text-white">Unable to Complete Analysis</h3>
-            <p className="text-sm text-slate-300 leading-relaxed">{errorMessage}</p>
+            <h3 className="text-lg font-bold text-slate-900">Analysis Error</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{errorMessage}</p>
 
-            <div className="pt-2 flex items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => setIsKeyModalOpen(true)}
-                className="glass-button-primary px-5 py-2.5 rounded-2xl text-xs font-semibold text-white flex items-center gap-2 cursor-pointer"
-              >
-                <Key className="w-3.5 h-3.5" />
-                <span>Configure Google AI Studio Key</span>
-              </button>
-
+            <div className="pt-2 flex items-center justify-center gap-2.5">
               <button
                 type="button"
                 onClick={() => performAnalysis(currentDraft)}
-                className="px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white flex items-center gap-2 cursor-pointer"
+                className="minimal-button-primary px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Retry</span>
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Retry Analysis</span>
               </button>
             </div>
           </div>
@@ -232,7 +210,7 @@ function DashboardContent() {
 
         {/* Active Analysis Results Display */}
         {!isLoading && !errorMessage && analysis && (
-          <div className="space-y-8 animate-fadeIn">
+          <div className="space-y-6 animate-fadeIn">
             {/* Quick Context & Re-Tune Bar */}
             <QuickTuneBar
               initialMessage={currentDraft.message}
@@ -244,7 +222,7 @@ function DashboardContent() {
             />
 
             {/* Top Row: Score Card & Tone Radar */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-6 flex">
                 <div className="w-full">
                   <CommunicationScoreCard analysis={analysis} />
@@ -258,7 +236,7 @@ function DashboardContent() {
               </div>
             </div>
 
-            {/* Middle Row: Before vs Improved Message (The Core Transformation) */}
+            {/* Before vs Improved Message */}
             <BeforeAfterComparison analysis={analysis} />
 
             {/* Action Bar (Copy, PDF Download, Share, WhatsApp Simulator) */}
@@ -267,7 +245,7 @@ function DashboardContent() {
               onOpenWhatsAppSimulator={() => setIsWhatsAppModalOpen(true)}
             />
 
-            {/* Lower Row: AI Linguistic Explanation */}
+            {/* Linguistic Explanation */}
             <AiExplanationCard analysis={analysis} />
 
             {/* Actionable Learning Tips */}
@@ -289,15 +267,6 @@ function DashboardContent() {
           analysis={analysis}
         />
       )}
-
-      {/* API Key Modal */}
-      <ApiKeyModal
-        isOpen={isKeyModalOpen}
-        onClose={() => setIsKeyModalOpen(false)}
-        onSaved={() => {
-          performAnalysis(currentDraft);
-        }}
-      />
     </div>
   );
 }
@@ -306,10 +275,10 @@ export default function DashboardPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#090b10] flex items-center justify-center text-white">
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" />
-            <span className="text-sm font-medium">Loading SpeakRight Dashboard...</span>
+        <div className="min-h-screen bg-[#fafafa] flex items-center justify-center text-slate-900">
+          <div className="flex items-center gap-2.5">
+            <div className="w-4 h-4 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
+            <span className="text-xs font-medium text-slate-600">Loading SpeakRight Dashboard...</span>
           </div>
         </div>
       }

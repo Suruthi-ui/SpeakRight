@@ -10,74 +10,68 @@ import {
   CheckCircle2,
   TrendingUp,
   MessageSquare,
-  Zap,
 } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-radial-glow">
-      {/* Background radial blurs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-indigo-600/10 blur-[130px] pointer-events-none rounded-full" />
-      <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-purple-600/10 blur-[120px] pointer-events-none rounded-full" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-4xl mx-auto mb-16">
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-[#fafafa]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           {/* Top Announcement Badge */}
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 backdrop-blur-md mb-6 shadow-sm"
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 mb-6 text-slate-700 shadow-xs"
           >
-            <Sparkles className="w-4 h-4 text-indigo-400" />
-            <span className="text-xs font-semibold text-indigo-200">
-              Next-Gen AI Communication Coach • Powered by Google Gemini
+            <Sparkles className="w-3.5 h-3.5 text-slate-800" />
+            <span className="text-xs font-medium">
+              AI Communication Coach • Intelligent Presence Engine
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           </motion.div>
 
           {/* Main Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.12]"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 mb-5 leading-[1.12]"
           >
-            Say What You Mean. <br className="hidden sm:inline" />
-            <span className="gradient-text-accent">Command The Respect</span> You Deserve.
+            Say what you mean. <br className="hidden sm:inline" />
+            <span className="text-slate-500">Command respect.</span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal"
           >
-            Rewriting hesitant, blunt, or over-apologetic drafts into articulate, confident, and respectful communication. Built for students, managers, and career professionals.
+            Rewrite hesitant, blunt, or over-apologetic drafts into articulate, confident, and respectful communication in seconds.
           </motion.p>
 
           {/* Action CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10"
           >
             <Link
               href="#message-builder"
-              className="glass-button-primary w-full sm:w-auto px-8 py-4 rounded-2xl text-sm font-semibold text-white flex items-center justify-center gap-2 shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40"
+              className="minimal-button-primary w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2"
             >
-              <Zap className="w-4 h-4 fill-white" />
-              <span>Rewrite Your Message Free</span>
+              <span>Rewrite Your Message</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             <Link
               href="/dashboard"
-              className="w-full sm:w-auto px-7 py-4 rounded-2xl text-sm font-medium text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md transition-all flex items-center justify-center gap-2"
+              className="minimal-button-secondary w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2"
             >
-              <span>Explore AI Dashboard</span>
+              <span>Open AI Dashboard</span>
             </Link>
           </motion.div>
 
@@ -85,100 +79,97 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-medium text-slate-400"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500"
           >
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Zero Mock Responses</span>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Native Linguistic Intelligence</span>
             </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-indigo-400 shrink-0" />
-              <span>Linguistic Etiquette Engine</span>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-slate-700 shrink-0" />
+              <span>Harvard Etiquette Principles</span>
             </div>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-purple-400 shrink-0" />
+            <div className="flex items-center gap-1.5">
+              <TrendingUp className="w-4 h-4 text-slate-700 shrink-0" />
               <span>Executive Presence Scoring</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Floating Preview Card: Visual Transformation */}
+        {/* Minimalist Visual Transformation Preview */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="glass-panel-elevated rounded-[28px] p-6 sm:p-8 relative overflow-hidden border border-white/15">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm relative overflow-hidden">
             {/* Top Bar with mock dots */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="text-xs text-slate-400 ml-2 font-mono">SpeakRight Transformation Preview</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                <span className="text-xs text-slate-500 ml-2 font-mono">Live Comparison Preview</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-medium">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+                <Sparkles className="w-3 h-3 text-emerald-600" />
                 <span>+52 Score Boost</span>
               </div>
             </div>
 
             {/* Split Comparison Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Before Card */}
-              <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-500/20 space-y-3">
+              <div className="p-4 sm:p-5 rounded-2xl bg-rose-50/50 border border-rose-100 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-rose-400">
-                    Original Draft (Before)
+                  <span className="text-xs font-semibold uppercase tracking-wider text-rose-700">
+                    Before (Raw Draft)
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 text-[11px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-bold">
                     Score: 44/100
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300 italic leading-relaxed bg-black/30 p-3.5 rounded-xl border border-white/5 font-mono">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed bg-white p-3.5 rounded-xl border border-rose-100 italic">
                   &ldquo;hey professor, sorry to bother you again but I couldn&apos;t do the assignment because I was sick. Can you give me 3 more days? please don&apos;t take points off.&rdquo;
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-1 text-[11px]">
-                  <span className="px-2 py-0.5 rounded-md bg-rose-500/15 text-rose-300">Over-apologetic</span>
-                  <span className="px-2 py-0.5 rounded-md bg-rose-500/15 text-rose-300">Too casual</span>
-                  <span className="px-2 py-0.5 rounded-md bg-rose-500/15 text-rose-300">Lacks structure</span>
+                <div className="flex flex-wrap gap-1 pt-1 text-[11px]">
+                  <span className="px-2 py-0.5 rounded-md bg-rose-100 text-rose-700">Over-apologetic</span>
+                  <span className="px-2 py-0.5 rounded-md bg-rose-100 text-rose-700">Too casual</span>
                 </div>
               </div>
 
               {/* After Card */}
-              <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 space-y-3 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-2xl pointer-events-none" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/50 border border-emerald-100 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>SpeakRight AI Rewrite (After)</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>After (SpeakRight Rewrite)</span>
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">
                     Score: 96/100
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-100 leading-relaxed bg-black/40 p-3.5 rounded-xl border border-emerald-500/20">
-                  &ldquo;Dear Professor Davis, I am writing to respectfully request a short extension on Assignment 2 until Friday, Oct 12th, due to sudden medical leave. I have completed 60% of the research and would appreciate the opportunity to submit my best work.&rdquo;
+                <p className="text-xs sm:text-sm text-slate-900 leading-relaxed bg-white p-3.5 rounded-xl border border-emerald-100 font-medium">
+                  &ldquo;Dear Professor Davis, I am writing to respectfully request a short extension on Assignment 2 until Friday, Oct 12th, due to medical leave. I have completed 60% of the research and would appreciate the opportunity to submit my best work.&rdquo;
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-1 text-[11px]">
-                  <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300">Respectful &amp; Formal</span>
-                  <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300">High Agency</span>
-                  <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300">Clear Milestones</span>
+                <div className="flex flex-wrap gap-1 pt-1 text-[11px]">
+                  <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">Formal &amp; Respectful</span>
+                  <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">Accountable</span>
                 </div>
               </div>
             </div>
 
             {/* Bottom Bar Info */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+            <div className="mt-5 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
               <div className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-indigo-400" />
-                <span>Calibrated for Professor • Academic &amp; Respectful Etiquette</span>
+                <MessageSquare className="w-4 h-4 text-slate-600" />
+                <span>Calibrated for Professor • Academic Etiquette</span>
               </div>
               <Link
                 href="#message-builder"
-                className="text-indigo-400 hover:text-indigo-300 font-medium inline-flex items-center gap-1 hover:underline underline-offset-4"
+                className="text-slate-900 hover:text-slate-700 font-medium inline-flex items-center gap-1 hover:underline underline-offset-4"
               >
                 <span>Try this with your message</span>
                 <ArrowRight className="w-3 h-3" />

@@ -34,7 +34,7 @@ export function generateCommunicationPdf(analysis: CommunicationAnalysis) {
     hour: "2-digit",
     minute: "2-digit",
   });
-  doc.text(`Generated on ${dateStr} • Powered by Google Gemini AI`, margin, 21);
+  doc.text(`Generated on ${dateStr} • Powered by SpeakRight AI Coach`, margin, 21);
 
   y = 36;
 

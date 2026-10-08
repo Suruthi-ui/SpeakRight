@@ -8,7 +8,7 @@ export function WhatsAppPreviewSection() {
 
   const mockOptions = [
     {
-      title: "Direct & Professional",
+      title: "Direct & Clear",
       text: "Hi Priya, quick update: the Q3 budget summary is finalized. Could you review before our 2 PM sync so we can align with stakeholders?",
     },
     {
@@ -16,55 +16,55 @@ export function WhatsAppPreviewSection() {
       text: "Hi Priya, hope you're having a productive week! The Q3 budget numbers are ready for your review whenever you have a moment before 2 PM.",
     },
     {
-      title: "Concise Executive",
+      title: "Concise",
       text: "Priya—Q3 budget ready for review. Action needed before 2 PM sync.",
     },
   ];
 
   return (
-    <section id="whatsapp" className="py-24 relative overflow-hidden bg-dot-pattern">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
+    <section id="whatsapp" className="py-20 bg-[#fafafa] relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider mb-3 border border-slate-200">
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Future-Ready Integration</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-3">
             WhatsApp Pre-Send AI Rewrite
           </h2>
-          <p className="text-sm sm:text-base text-slate-300">
-            Never send an emotional, impulsive, or poorly phrased text again. SpeakRight integrates via Meta WhatsApp Cloud API webhooks to calibrate your messages in real-time.
+          <p className="text-sm text-slate-600">
+            Never send an emotional, impulsive, or poorly phrased message again. SpeakRight integrates via Meta WhatsApp Cloud API webhooks to calibrate your messages before hitting send.
           </p>
         </div>
 
-        {/* WhatsApp Simulation Demo Card */}
+        {/* WhatsApp Demo Card */}
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Explanation Column */}
-          <div className="lg:col-span-5 space-y-6 text-slate-300 text-sm">
-            <div className="glass-panel p-6 rounded-3xl border border-white/10 space-y-4">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
+          {/* Left Column */}
+          <div className="lg:col-span-5 space-y-4 text-slate-600 text-sm">
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-slate-800" />
                 <span>Pre-Send Interception Architecture</span>
               </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Integrated into the backend at <code className="text-indigo-300 bg-white/5 px-1 py-0.5 rounded">/api/whatsapp/rewrite</code> and ready for Meta Cloud API webhooks.
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Integrated at <code className="text-slate-800 bg-slate-100 px-1 py-0.5 rounded font-mono">/api/whatsapp/rewrite</code> and ready for Meta Cloud API webhooks.
               </p>
 
-              <div className="space-y-3 pt-2">
-                <div className="flex items-start gap-2.5 text-xs">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+              <div className="space-y-2.5 pt-1">
+                <div className="flex items-start gap-2.5 text-xs text-slate-700">
+                  <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 border border-slate-200">
                     1
                   </div>
-                  <span>Draft in WhatsApp keyboard or chat extension.</span>
+                  <span>Draft your raw message in WhatsApp.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                <div className="flex items-start gap-2.5 text-xs text-slate-700">
+                  <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 border border-slate-200">
                     2
                   </div>
-                  <span>Gemini checks recipient context, hierarchy, &amp; tone.</span>
+                  <span>Gemini checks recipient context &amp; tone.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                <div className="flex items-start gap-2.5 text-xs text-slate-700">
+                  <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 border border-slate-200">
                     3
                   </div>
                   <span>Pick one-tap polished message before the recipient reads.</span>
@@ -72,22 +72,21 @@ export function WhatsAppPreviewSection() {
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 flex items-center gap-3">
-              <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2.5">
+              <Check className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Full Meta Webhook API endpoints pre-configured in project code.</span>
             </div>
           </div>
 
-          {/* Right Column: Realistic WhatsApp Phone Mockup */}
+          {/* Right Column: WhatsApp Phone Mockup */}
           <div className="lg:col-span-7 flex justify-center">
-            <div className="w-full max-w-sm rounded-[36px] bg-[#111b21] p-3 border-4 border-slate-700 shadow-2xl relative overflow-hidden">
-              {/* Phone Speaker & Camera Notch */}
-              <div className="w-32 h-4 bg-slate-800 mx-auto rounded-full mb-3" />
+            <div className="w-full max-w-sm rounded-[32px] bg-[#111b21] p-3 border-4 border-slate-300 shadow-lg relative overflow-hidden">
+              <div className="w-28 h-3.5 bg-slate-800 mx-auto rounded-full mb-3" />
 
-              {/* WhatsApp Chat Header */}
-              <div className="bg-[#202c33] px-4 py-3 rounded-2xl flex items-center justify-between mb-3 shadow-md">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">
+              {/* Chat Header */}
+              <div className="bg-[#202c33] px-3.5 py-2.5 rounded-xl flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-slate-700 text-white font-bold flex items-center justify-center text-xs">
                     PD
                   </div>
                   <div>
@@ -101,41 +100,39 @@ export function WhatsAppPreviewSection() {
                 </div>
               </div>
 
-              {/* Chat Message Stream */}
-              <div className="space-y-3 px-1 py-2 min-h-[220px]">
-                {/* Incoming message */}
+              {/* Chat Messages */}
+              <div className="space-y-3 px-1 py-1 min-h-[190px]">
                 <div className="flex justify-start">
-                  <div className="bg-[#202c33] text-slate-200 text-xs p-3 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm">
+                  <div className="bg-[#202c33] text-slate-200 text-xs p-3 rounded-xl rounded-tl-none max-w-[85%]">
                     <p>Good morning. Has the lab report been finalized yet?</p>
                     <span className="text-[9px] text-slate-400 block text-right mt-1">10:14 AM</span>
                   </div>
                 </div>
 
                 {/* SpeakRight Intercept Suggestion Bubble */}
-                <div className="bg-indigo-950/60 border border-indigo-500/30 rounded-2xl p-3 shadow-lg">
+                <div className="bg-slate-900 border border-slate-700 rounded-xl p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold text-indigo-300 flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-indigo-400" />
+                    <span className="text-[10px] font-bold text-slate-200 flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-emerald-400" />
                       <span>SpeakRight Pre-Send Rewrite:</span>
                     </span>
                     <span className="text-[9px] text-emerald-400 font-mono">Score 97%</span>
                   </div>
 
-                  <p className="text-xs text-white bg-black/40 p-2.5 rounded-xl border border-white/5 mb-2 leading-relaxed">
+                  <p className="text-xs text-white bg-black/50 p-2.5 rounded-lg border border-slate-800 mb-2 leading-relaxed">
                     {mockOptions[selectedRewrite].text}
                   </p>
 
-                  {/* Switch Option Pills */}
                   <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
                     {mockOptions.map((opt, i) => (
                       <button
                         key={i}
                         type="button"
                         onClick={() => setSelectedRewrite(i)}
-                        className={`text-[9px] px-2 py-1 rounded-lg shrink-0 transition-all cursor-pointer ${
+                        className={`text-[9px] px-2 py-1 rounded-md shrink-0 transition-all cursor-pointer ${
                           selectedRewrite === i
-                            ? "bg-indigo-600 text-white font-semibold"
-                            : "bg-white/10 text-slate-400 hover:text-white"
+                            ? "bg-white text-slate-900 font-semibold"
+                            : "bg-slate-800 text-slate-400 hover:text-white"
                         }`}
                       >
                         {opt.title}
@@ -146,22 +143,22 @@ export function WhatsAppPreviewSection() {
               </div>
 
               {/* Chat Input Bar */}
-              <div className="mt-2 bg-[#202c33] p-2 rounded-2xl flex items-center gap-2">
+              <div className="mt-2 bg-[#202c33] p-1.5 rounded-xl flex items-center gap-2">
                 <input
                   type="text"
                   readOnly
-                  value="Applying SpeakRight master rewrite..."
+                  value="Applying SpeakRight rewrite..."
                   className="bg-transparent text-[11px] text-slate-300 px-2 w-full focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setSelectedRewrite((prev) => (prev + 1) % mockOptions.length)}
-                  className="p-1.5 rounded-xl text-slate-400 hover:text-white cursor-pointer"
+                  className="p-1 rounded-lg text-slate-400 hover:text-white cursor-pointer"
                   title="Cycle suggestion"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                 </button>
-                <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 cursor-pointer shadow-md">
+                <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 cursor-pointer">
                   <Send className="w-3.5 h-3.5 fill-slate-950" />
                 </div>
               </div>

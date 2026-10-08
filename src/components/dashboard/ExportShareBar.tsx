@@ -29,10 +29,10 @@ export function ExportShareBar({ analysis, onOpenWhatsAppSimulator }: Props) {
 
     try {
       confetti({
-        particleCount: 40,
-        spread: 60,
+        particleCount: 35,
+        spread: 50,
         origin: { y: 0.6 },
-        colors: ["#6366f1", "#10b981"],
+        colors: ["#0f172a", "#059669"],
       });
     } catch {}
 
@@ -63,7 +63,6 @@ export function ExportShareBar({ analysis, onOpenWhatsAppSimulator }: Props) {
         setShareSuccess(true);
         setTimeout(() => setShareSuccess(false), 2000);
       } catch {
-        // User cancelled or share failed, fallback to copy
         fallbackShareCopy();
       }
     } else {
@@ -79,40 +78,40 @@ export function ExportShareBar({ analysis, onOpenWhatsAppSimulator }: Props) {
   };
 
   return (
-    <div className="glass-panel-elevated rounded-2xl p-4 sm:p-5 border border-white/10 flex flex-wrap items-center justify-between gap-4">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center text-indigo-400">
-          <Sparkles className="w-5 h-5" />
+        <div className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800">
+          <Sparkles className="w-4 h-4" />
         </div>
         <div>
-          <h4 className="text-sm font-semibold text-white">Action &amp; Export Center</h4>
-          <p className="text-xs text-slate-400">
-            Download executive PDF report or test in WhatsApp pre-send simulator
+          <h4 className="text-sm font-bold text-slate-900">Actions &amp; Export</h4>
+          <p className="text-xs text-slate-500">
+            Download PDF report or preview pre-send rewrite in WhatsApp
           </p>
         </div>
       </div>
 
-      <div className="flex items-center gap-2.5 flex-wrap">
+      <div className="flex items-center gap-2 flex-wrap">
         {/* WhatsApp Pre-Send Simulator */}
         <button
           type="button"
           onClick={onOpenWhatsAppSimulator}
-          className="px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+          className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
         >
-          <MessageCircle className="w-3.5 h-3.5" />
-          <span>WhatsApp Simulator</span>
+          <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+          <span>WhatsApp Preview</span>
         </button>
 
         {/* Copy Button */}
         <button
           type="button"
           onClick={handleCopy}
-          className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200 flex items-center gap-1.5 transition-all cursor-pointer"
+          className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-400">Copied!</span>
+              <Check className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="text-emerald-700">Copied!</span>
             </>
           ) : (
             <>
@@ -126,12 +125,12 @@ export function ExportShareBar({ analysis, onOpenWhatsAppSimulator }: Props) {
         <button
           type="button"
           onClick={handleShare}
-          className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200 flex items-center gap-1.5 transition-all cursor-pointer"
+          className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
         >
           {shareSuccess ? (
             <>
-              <Check className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="text-indigo-400">Report Copied!</span>
+              <Check className="w-3.5 h-3.5 text-slate-800" />
+              <span>Copied!</span>
             </>
           ) : (
             <>
@@ -146,7 +145,7 @@ export function ExportShareBar({ analysis, onOpenWhatsAppSimulator }: Props) {
           type="button"
           onClick={handleDownloadPdf}
           disabled={isGeneratingPdf}
-          className="glass-button-primary px-4 py-2 rounded-xl text-xs font-semibold text-white flex items-center gap-1.5 shadow-md cursor-pointer disabled:opacity-50"
+          className="minimal-button-primary px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
         >
           <Download className="w-3.5 h-3.5" />
           <span>{isGeneratingPdf ? "Generating..." : "Download PDF"}</span>

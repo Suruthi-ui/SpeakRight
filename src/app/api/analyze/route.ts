@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateCommunicationAnalysis } from "@/lib/gemini";
+import { analyzeCommunicationNative } from "@/lib/analyzer";
 import { AnalyzeRequest } from "@/types/communication";
-
-export const maxDuration = 60; // Allow sufficient time for deep reasoning
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,13 +20,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check for user-supplied API key in headers or body
-    const customApiKey =
-      req.headers.get("x-gemini-api-key") ||
-      (req.headers.get("authorization")?.replace("Bearer ", "")) ||
-      undefined;
-
-    const analysis = await generateCommunicationAnalysis(body, customApiKey);
+    // Run native communication analysis engine
+    const analysis = analyzeCommunicationNative(body);
 
     return NextResponse.json({
       success: true,
@@ -36,17 +29,12 @@ export async function POST(req: NextRequest) {
     });
   } catch (err: unknown) {
     const error = err as Error;
-    const isAuthError =
-      error.message?.includes("API key not found") ||
-      error.message?.includes("invalid") ||
-      error.message?.includes("API_KEY_INVALID");
-
     return NextResponse.json(
       {
         success: false,
-        error: error.message || "Failed to analyze message with Gemini AI.",
+        error: error.message || "Failed to analyze message.",
       },
-      { status: isAuthError ? 401 : 500 }
+      { status: 500 }
     );
   }
 }

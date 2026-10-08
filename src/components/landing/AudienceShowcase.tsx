@@ -8,28 +8,28 @@ export function AudienceShowcase() {
   const [activeTab, setActiveTab] = useState<"students" | "professionals">("students");
 
   return (
-    <section id="audience" className="py-24 relative overflow-hidden bg-radial-glow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
-            <span>Tailored For Your World</span>
+    <section id="audience" className="py-20 bg-white border-b border-slate-200/60 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider mb-3 border border-slate-200">
+            <span>Use Cases</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
-            Built for Students &amp; Professionals Alike
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-3">
+            Built for Students &amp; Working Professionals
           </h2>
-          <p className="text-sm sm:text-base text-slate-300">
-            Whether emailing a tenured professor or pitching a critical roadmap shift to executive leadership, SpeakRight calibrates the exact tone required.
+          <p className="text-sm text-slate-600">
+            Whether emailing a tenured professor or pitching a critical roadmap shift to leadership, SpeakRight calibrates the exact tone required.
           </p>
 
           {/* Tab Switcher */}
-          <div className="mt-8 inline-flex p-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+          <div className="mt-6 inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200">
             <button
               type="button"
               onClick={() => setActiveTab("students")}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 activeTab === "students"
-                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-slate-900 text-white shadow-xs"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <GraduationCap className="w-4 h-4" />
@@ -39,10 +39,10 @@ export function AudienceShowcase() {
             <button
               type="button"
               onClick={() => setActiveTab("professionals")}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 activeTab === "professionals"
-                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-slate-900 text-white shadow-xs"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Briefcase className="w-4 h-4" />
@@ -52,41 +52,41 @@ export function AudienceShowcase() {
         </div>
 
         {/* Tab Content Display */}
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {activeTab === "students" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 glass-panel-elevated p-8 sm:p-10 rounded-[30px] border border-white/15">
-              <div className="space-y-6 flex flex-col justify-between">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50/70 p-6 sm:p-8 rounded-3xl border border-slate-200">
+              <div className="space-y-4 flex flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-semibold mb-4 border border-indigo-500/20">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-3 border border-slate-200">
                     <GraduationCap className="w-3.5 h-3.5" />
-                    <span>Academic Etiquette Engine</span>
+                    <span>Academic Etiquette</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Eliminate Casual Slips with Professors &amp; Admissions
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
+                    Eliminate Casual Slips with Professors
                   </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                    Students often struggle with sounding too informal (&ldquo;hey prof&rdquo;) or overly anxious and apologetic. SpeakRight teaches you how to present academic requests with dignity, structure, and respect.
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                    Students often struggle with sounding too informal (&ldquo;hey prof&rdquo;) or overly anxious. SpeakRight teaches you how to present academic requests with dignity and clear milestones.
                   </p>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {[
-                      "Requesting deadline extensions with accountability and milestones",
-                      "Asking for strong Letters of Recommendation with structured brag sheets",
-                      "Politely disputing an exam grade without sounding confrontational",
-                      "Inquiring about undergraduate research lab openings",
+                      "Requesting deadline extensions with clear accountability",
+                      "Asking for strong Letters of Recommendation with brag sheets",
+                      "Politely disputing an exam grade constructively",
+                      "Inquiring about undergraduate research lab positions",
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
+                        <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <Link
                     href="#message-builder"
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 hover:text-indigo-300 hover:underline underline-offset-4"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 hover:underline underline-offset-4"
                   >
                     <span>Try student email rewrite now</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -95,91 +95,91 @@ export function AudienceShowcase() {
               </div>
 
               {/* Student Sample Visual Card */}
-              <div className="space-y-4 bg-black/40 p-6 rounded-2xl border border-white/10 font-sans text-xs flex flex-col justify-between">
+              <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-200 text-xs flex flex-col justify-between shadow-xs">
                 <div>
-                  <div className="text-[11px] font-mono text-slate-400 mb-2 uppercase">
+                  <div className="text-[11px] font-mono text-slate-500 mb-1.5 uppercase font-semibold">
                     Common Student Mistake
                   </div>
-                  <div className="p-3.5 rounded-xl bg-red-950/30 border border-red-500/30 text-slate-300 italic mb-4">
+                  <div className="p-3 rounded-xl bg-rose-50/70 border border-rose-100 text-slate-700 italic mb-3">
                     &ldquo;Hey professor, I forgot about the quiz yesterday because of another midterm. Is there any way I can retake it? Please let me know thanks.&rdquo;
                   </div>
 
-                  <div className="text-[11px] font-mono text-emerald-400 mb-2 uppercase flex items-center gap-1.5">
-                    <span>✨ SpeakRight Academic Master Rewrite</span>
+                  <div className="text-[11px] font-mono text-emerald-700 mb-1.5 uppercase font-semibold flex items-center gap-1">
+                    <span>✨ Master Academic Rewrite</span>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-slate-100">
-                    &ldquo;Dear Professor Henderson, I am writing to sincerely apologize for missing yesterday’s quiz due to an academic conflict. I take full responsibility for the oversight. If your course policy permits make-up assessments or alternative assignments, I would be grateful for the opportunity to demonstrate my understanding of the material. Thank you for your time.&rdquo;
+                  <div className="p-3 rounded-xl bg-emerald-50/60 border border-emerald-100 text-slate-900 font-medium">
+                    &ldquo;Dear Professor Henderson, I am writing to sincerely apologize for missing yesterday’s quiz due to an academic conflict. I take full responsibility for the oversight. If your course policy permits make-up assessments or alternative assignments, I would be grateful for the opportunity to demonstrate my understanding of the material.&rdquo;
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-[11px] text-slate-400 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600 flex items-center justify-between">
                   <span>Tone: Formal &amp; Accountable</span>
-                  <span className="text-emerald-400 font-bold">Score: 97/100</span>
+                  <span className="text-emerald-700 font-bold">Score: 97/100</span>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 glass-panel-elevated p-8 sm:p-10 rounded-[30px] border border-white/15">
-              <div className="space-y-6 flex flex-col justify-between">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50/70 p-6 sm:p-8 rounded-3xl border border-slate-200">
+              <div className="space-y-4 flex flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-semibold mb-4 border border-purple-500/20">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-3 border border-slate-200">
                     <Briefcase className="w-3.5 h-3.5" />
-                    <span>Executive Presence Engine</span>
+                    <span>Executive Presence</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
                     Replace Apologies with Authority &amp; Clarity
                   </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                    In the corporate workplace, over-apologizing (&ldquo;just checking in&rdquo;, &ldquo;sorry to bother you&rdquo;) diminishes your authority. SpeakRight instills high agency, proactive communication, and leadership tone.
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                    In the workplace, over-apologizing (&ldquo;just checking in&rdquo;, &ldquo;sorry to bother you&rdquo;) diminishes your leverage. SpeakRight instills high agency and proactive communication.
                   </p>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {[
                       "Negotiating compensation adjustments with value-anchored framing",
-                      "Escalating blockers and delays to executives without sounding defensive",
+                      "Escalating blockers and delays to leadership with solutions",
                       "Delivering constructive peer feedback with emotional intelligence",
                       "Declining low-priority requests while maintaining strong alignment",
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
+                        <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <Link
                     href="#message-builder"
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 hover:text-purple-300 hover:underline underline-offset-4"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 hover:underline underline-offset-4"
                   >
-                    <span>Try professional rewrite now</span>
+                    <span>Try workplace rewrite now</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
 
               {/* Professional Sample Visual Card */}
-              <div className="space-y-4 bg-black/40 p-6 rounded-2xl border border-white/10 font-sans text-xs flex flex-col justify-between">
+              <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-200 text-xs flex flex-col justify-between shadow-xs">
                 <div>
-                  <div className="text-[11px] font-mono text-slate-400 mb-2 uppercase">
+                  <div className="text-[11px] font-mono text-slate-500 mb-1.5 uppercase font-semibold">
                     Common Workplace Mistake
                   </div>
-                  <div className="p-3.5 rounded-xl bg-red-950/30 border border-red-500/30 text-slate-300 italic mb-4">
+                  <div className="p-3 rounded-xl bg-rose-50/70 border border-rose-100 text-slate-700 italic mb-3">
                     &ldquo;Sorry to bother you, I know you&apos;re super busy! Just wanted to ask if you had a second to check the PR when you get a chance? No rush at all though!&rdquo;
                   </div>
 
-                  <div className="text-[11px] font-mono text-emerald-400 mb-2 uppercase flex items-center gap-1.5">
-                    <span>✨ SpeakRight Executive Rewrite</span>
+                  <div className="text-[11px] font-mono text-emerald-700 mb-1.5 uppercase font-semibold flex items-center gap-1">
+                    <span>✨ Master Executive Rewrite</span>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-slate-100">
+                  <div className="p-3 rounded-xl bg-emerald-50/60 border border-emerald-100 text-slate-900 font-medium">
                     &ldquo;Hi Alex, the authentication PR is ready for your review. To ensure we deploy by Thursday’s release cutoff, could you review it by 3 PM today? Happy to jump on a quick huddle if you have any questions on the architecture.&rdquo;
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-[11px] text-slate-400 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600 flex items-center justify-between">
                   <span>Tone: High Agency &amp; Direct</span>
-                  <span className="text-emerald-400 font-bold">Score: 98/100</span>
+                  <span className="text-emerald-700 font-bold">Score: 98/100</span>
                 </div>
               </div>
             </div>
